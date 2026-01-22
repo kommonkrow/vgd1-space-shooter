@@ -15,6 +15,8 @@ public class Ship : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public GameObject projectilePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +29,23 @@ public class Ship : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+    }
+
     public void Thrust()
     {
         rb.AddForce(transform.up * acceleration);
     }
 
-    public void PewPew()
-    { 
-    
+    public void FireProjectile()
+    {
+        GameObject newProjectile = Instantiate(projectilePrefab);
+        newProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up);
     }
 
     public void TakeDamage()

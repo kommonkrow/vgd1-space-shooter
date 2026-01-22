@@ -18,6 +18,11 @@ public class PlayerShip : Ship
             Thrust();
         }
 
+        if(Input.GetMouseButtonDown(0))
+        {
+            FireProjectile();
+        }
+
         FollowMouse(); 
     }
 
