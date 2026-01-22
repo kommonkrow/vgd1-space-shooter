@@ -12,10 +12,13 @@ public class Ship : MonoBehaviour
     public float maxSpeed;
 
     public float fireRate;
+    public float projectileVelocity;
 
     public Rigidbody2D rb;
 
     public GameObject projectilePrefab;
+
+    public Transform projectileSpawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +47,8 @@ public class Ship : MonoBehaviour
 
     public void FireProjectile()
     {
-        GameObject newProjectile = Instantiate(projectilePrefab);
-        newProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up);
+        GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, transform.rotation);
+        newProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up * projectileVelocity);
     }
 
     public void TakeDamage()
