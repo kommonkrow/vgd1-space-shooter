@@ -49,6 +49,7 @@ public class Ship : MonoBehaviour
     {
         GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, transform.rotation);
         newProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up * projectileVelocity);
+        Destroy(newProjectile, 4);
     }
 
     public void TakeDamage()
